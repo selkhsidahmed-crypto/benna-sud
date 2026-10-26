@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Benna Sud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Tajawal:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand-row">
+      <svg class="logo" id="logo" viewBox="0 0 100 100" role="img" aria-label="شعار Benna Sud"></svg>
+      <div class="brand"><span class="latin">Benna Sud</span><small>بيع مستلزمات الحلويات ومواد التغليف</small></div>
+    </div>
+    <div class="top-actions">
+      <button class="top-link admin-link" id="adminBtn" type="button" hidden>لوحة التحكم</button>
+      <a class="top-link" href="#contact">تواصل معنا</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>اطبع حلواك بيدك، وزيّنها بذوقك</h1>
+      <p>طوابع خشبية وقوالب وأدوات تزيين ومكوّنات للمقروط والغريبة وقلب اللوز والبقلاوة، في مكان واحد. اختر ما تريد وأرسل طلبك على واتساب.</p>
+      <a class="btn" href="#products">تصفّح المنتجات</a><a class="btn alt" href="#how">كيف أطلب؟</a>
+    </div>
+    <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 200 200" id="heroStamp"></svg></div>
+  </div>
+
+  <section id="products">
+    <h2 class="sec">المنتجات</h2>
+    <p class="sec-note" id="demoNote" hidden>هذه منتجات تجريبية للعرض. يضيف صاحب المحل منتجاته وأسعاره الحقيقية من لوحة التحكم.</p>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="ابحث عن منتج" aria-label="ابحث عن منتج" autocomplete="off">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="تصفية حسب الفئة"></div>
+    <div class="grid" id="grid"></div>
+    <button class="btn alt more" id="more" type="button" hidden>عرض المزيد</button>
+  </section>
+
+  <section id="how">
+    <h2 class="sec">كيف أطلب؟</h2>
+    <ol class="steps">
+      <li><b>اختر</b><span>اضغط «أضف إلى الطلب» على كل منتج تريده.</span></li>
+      <li><b>أرسل</b><span>اضغط «أرسل الطلب»، فتصلنا قائمتك جاهزة على واتساب.</span></li>
+      <li><b>استلم</b><span>نؤكد لك السعر والتوصيل، وتدفع عند الاستلام.</span></li>
+    </ol>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <h2>تواصل معنا</h2>
+      <p>واتساب: <span class="num">0550 44 21 77</span> · <span class="num">0778 44 21 77</span></p>
+      <p>إنستغرام: <span class="num">benna sud ghardaia</span></p>
+      <p>غرداية، الجزائر</p>
+    </div>
+  </section>
+
+  <footer><span style="direction:ltr;unicode-bidi:isolate;display:inline-block">Benna Sud</span> · غرداية · <button class="top-link foot" id="loginBtn" type="button">دخول المالك</button></footer>
+</div>
+
+<div class="orderbar">
+  <div class="list" id="list" hidden></div>
+  <div class="orderbar-in">
+    <div class="orderbar-sum" id="sum">طلبك فارغ</div>
+    <a class="btn" id="send" href="#" target="_blank" rel="noopener" aria-disabled="true">أرسل الطلب على واتساب</a>
+  </div>
+</div>
+
+<div class="admin" id="admin" hidden role="dialog" aria-modal="true" aria-label="لوحة التحكم">
+  <div class="admin-in">
+    <div class="admin-head">
+      <h2>لوحة التحكم</h2>
+      <div class="actions"><button class="btn small ghost" id="logoutBtn" type="button">تسجيل الخروج</button><button class="btn small ghost" id="adminClose" type="button">إغلاق</button></div>
+    </div>
+
+    <div class="panel" id="demoPanel" hidden>
+      <h3>ابدأ بسرعة</h3>
+      <p class="hint">لم تضف أي منتج بعد، والموقع يعرض منتجات تجريبية. يمكنك نسخها لتعدّل عليها، أو إضافة منتجاتك مباشرة.</p>
+      <div class="actions"><button class="btn small" id="loadDemo" type="button">نسخ المنتجات التجريبية للتعديل</button></div>
+    </div>
+
+    <form class="panel" id="form" autocomplete="off">
+      <h3 id="formTitle">إضافة منتج</h3>
+      <div class="field"><label for="f-name">اسم المنتج</label><input id="f-name" type="text" maxlength="120" required></div>
+      <div class="row2">
+        <div class="field"><label for="f-cat">الفئة</label><input id="f-cat" type="text" maxlength="60" list="catlist" placeholder="مثال: طوابع وقوالب"><datalist id="catlist"></datalist></div>
+        <div class="field"><label for="f-price">السعر (دج)</label><input id="f-price" type="number" min="0" step="1" inputmode="numeric"></div>
+      </div>
+      <div class="field"><label for="f-desc">وصف قصير</label><textarea id="f-desc" maxlength="400"></textarea></div>
+      <div class="field" id="imgField">
+        <label for="f-img">صورة المنتج</label>
+        <input id="f-img" type="file" accept="image/*">
+        <div class="preview" id="preview" hidden><img id="prevImg" alt=""><button class="btn small ghost" id="rmImg" type="button">إزالة الصورة</button></div>
+      </div>
+      <div class="actions">
+        <button class="btn small" id="saveBtn" type="submit">حفظ المنتج</button>
+        <button class="btn small ghost" id="cancelEdit" type="button" hidden>إلغاء التعديل</button>
+      </div>
+      <div class="msg" id="formMsg" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="panel">
+      <h3>إضافة عدة منتجات دفعة واحدة</h3>
+      <p class="hint">الصق قائمتك من Excel أو من أي ملف. كل منتج في سطر، والأعمدة بهذا الترتيب: الاسم، السعر، الفئة، الوصف (الوصف اختياري). الفاصل بين الأعمدة فاصلة أو Tab.</p>
+      <div class="field"><label for="bulk">القائمة</label><textarea class="bulk" id="bulk" placeholder="طابع المقروط الخشبي, 450, طوابع وقوالب&#10;لوز مطحون 500 غ, 1100, مكوّنات"></textarea></div>
+      <div class="actions"><button class="btn small" id="bulkGo" type="button" disabled>استيراد</button><span class="msg" id="bulkCount"></span></div>
+      <div class="progress" id="bulkBar" hidden><i id="bulkFill"></i></div>
+      <div class="msg" id="bulkMsg" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="panel">
+      <h3>رقم استقبال الطلبات</h3>
+      <p class="hint">الرقم الذي تصله رسائل واتساب من الزبائن، بالصيغة المحلية أو الدولية.</p>
+      <div class="row2">
+        <div class="field"><label for="s-wa">رقم واتساب</label><input id="s-wa" type="tel" inputmode="tel" dir="ltr" placeholder="0550442177"></div>
+        <div class="field"><label>&nbsp;</label><button class="btn small" id="saveWa" type="button">حفظ الرقم</button></div>
+      </div>
+      <div class="msg" id="waMsg" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="panel">
+      <h3>منتجاتك (<span id="cnt">0</span>)</h3>
+      <div class="field"><label for="aq">بحث في المنتجات</label><input id="aq" type="search" autocomplete="off"></div>
+      <div class="alist" id="alist"></div>
+      <button class="btn small ghost" id="aMore" type="button" hidden>عرض المزيد</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="loginModal" hidden role="dialog" aria-modal="true" aria-label="دخول المالك">
+  <form class="panel" id="loginForm">
+    <h3>دخول المالك</h3>
+    <div class="field"><label for="l-email">البريد الإلكتروني</label><input id="l-email" type="email" dir="ltr" autocomplete="username" required></div>
+    <div class="field"><label for="l-pass">كلمة السر</label><input id="l-pass" type="password" dir="ltr" autocomplete="current-password" required></div>
+    <div class="actions"><button class="btn small" type="submit">دخول</button><button class="btn small ghost" id="loginCancel" type="button">إلغاء</button></div>
+    <div class="msg" id="loginMsg" role="status" aria-live="polite"></div>
+  </form>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
